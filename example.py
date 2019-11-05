@@ -13,38 +13,32 @@ import os
 if __name__=="__main__":
 
     PATH=os.path.dirname(os.path.abspath(__file__))
-    phon=Phonet(["stop"])
+    phon=Phonet()
 
     # get the "stop" phonological posterior from a single file
     file_audio=PATH+"/audios/pataka.wav"
     file_feat=PATH+"/phonclasses/pataka"
-    phon.get_phon_wav(file_audio, file_feat, True)
+    phon.get_phon_wav(file_audio, file_feat, "stop", True)
 
     # get the "nasal" phonological posterior from a single file
     file_audio=PATH+"/audios/sentence.wav"
     file_feat=PATH+"/phonclasses/sentence_nasal"
-    phon=Phonet(["nasal"])
-    phon.get_phon_wav(file_audio, file_feat, True)
+    phon.get_phon_wav(file_audio, file_feat, "nasal", True)
 
     # get the "strident" phonological posterior from a single file
     file_feat=PATH+"/phonclasses/sentence_strident"
-    phon=Phonet(["strident"])
-    phon.get_phon_wav(file_audio, file_feat, True)
+    phon.get_phon_wav(file_audio, file_feat, "strident", True)
 
-    # get "strident, nasl, and back" phonological posteriors from a single file
+    # get "all" phonological posteriors from a single file
     file_feat=PATH+"/phonclasses/sentence_all"
-    phon=Phonet(["strident", "nasal", "back"])
-    phon.get_phon_wav(file_audio, file_feat, True)
+    phon.get_phon_wav(file_audio, file_feat, "all", True)
 
-
-    # compute the posteriorgram for an audio_file for different phonological posteriors
-    phon=Phonet(["vocalic", "strident", "nasal", "back", "stop", "pause"])
+    # compute the posteriorgram for an audio_file
     phon.get_posteriorgram(file_audio)
 
 
-    # get phonological posteriors from de audio files included in a directory
+    # get "all" phonological posteriors from de audio files included in a directory
     directory=PATH+"/phonclasses/"
-    phon=Phonet(["vocalic", "strident", "nasal", "back", "stop", "pause"])
-    phon.get_phon_path(PATH+"/audios/", PATH+"/phonclasses2/")
+    phon.get_phon_path(PATH+"/audios/", PATH+"/phonclasses2/", "all")
 
     
